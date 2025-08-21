@@ -109,3 +109,26 @@ FROM students s
 JOIN linux_grades lg ON s.student_id = lg.student_id
 JOIN python_grades pg ON s.student_id = pg.student_id;
 
+
+-- Calculate the average grade per course (Linux and Python separately).
+-- This query calculates the average grade for the Linux course.
+SELECT 'Linux' AS course, AVG(grade_obtained) AS average_grade
+FROM linux_grades;
+
+-- This query calculates the average grade for the Python course.
+SELECT 'Python' AS course, AVG(grade_obtained) AS average_grade
+FROM python_grades;
+
+-- Identify the top-performing student across both courses (based on the average of their grades).
+-- This query calculates the average grade for each student across all courses they took,
+-- then orders the results to find the student with the highest average.
+SELECT s.student_name, AVG(all_grades.grade) as average_score
+FROM students s
+JOIN (
+    SELECT student_id, grade_obtained as grade FROM linux_grades
+    UNION ALL
+    SELECT student_id, grade_obtained as grade FROM python_grades
+) AS all_grades ON s.student_id = all_grades.student_id
+GROUP BY s.student_id, s.student_name
+ORDER BY average_score DESC
+LIMIT 1;
