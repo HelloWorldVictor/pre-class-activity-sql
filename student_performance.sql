@@ -33,3 +33,52 @@ CREATE TABLE python_grades (
     FOREIGN KEY (student_id) REFERENCES students(student_id)
 );
 
+-- 2. Queries to Implement
+-- Insert sample data into each table (at least 15 students)
+
+-- Insert students
+INSERT INTO students (student_name, intake_year) VALUES
+('Victor Hamzat', 2023),
+('Ayobamidele Aiyedogbon', 2023),
+('Liata Ornella', 2022),
+('Jean Luc Mucyo Ndahimana', 2023),
+('Victor Idowu', 2022),
+('Fatima Al-Fihri', 2024),
+('Nelson Mandela', 2023),
+('Wangari Maathai', 2022),
+('Chinua Achebe', 2024),
+('Ngozi Okonjo-Iweala', 2023),
+('Elon Musk', 2022),
+('Jeff Bezos', 2024),
+('Bill Gates', 2023),
+('Mark Zuckerberg', 2022),
+('Ada Lovelace', 2024);
+
+-- Insert Linux grades (some students took this course)
+INSERT INTO linux_grades (student_id, grade_obtained) VALUES
+(1, 85),
+(2, 45),
+(3, 70),
+(4, 90),
+(5, 48),
+(7, 60),
+(8, 75),
+(10, 88),
+(11, 40),
+(13, 95),
+(15, 80);
+
+-- Insert Python grades (some students took this course)
+INSERT INTO python_grades (student_id, grade_obtained) VALUES
+(1, 92),
+(3, 78),
+(4, 85),
+(6, 95),
+(7, 68),
+(9, 88),
+(10, 91),
+(12, 72),
+(13, 89),
+(14, 65),
+(15, 82);
+
