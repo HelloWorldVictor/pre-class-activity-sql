@@ -82,3 +82,9 @@ INSERT INTO python_grades (student_id, grade_obtained) VALUES
 (14, 65),
 (15, 82);
 
+-- Find students who scored less than 50% in the Linux course.
+-- This query selects students from the linux_grades table with a grade less than 50.
+SELECT s.student_name, lg.grade_obtained
+FROM students s
+JOIN linux_grades lg ON s.student_id = lg.student_id
+WHERE lg.grade_obtained < 50;
