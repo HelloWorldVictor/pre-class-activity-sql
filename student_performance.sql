@@ -88,3 +88,24 @@ SELECT s.student_name, lg.grade_obtained
 FROM students s
 JOIN linux_grades lg ON s.student_id = lg.student_id
 WHERE lg.grade_obtained < 50;
+
+-- Find students who took only one course (either Linux or Python, not both).
+-- This query unions all course records, groups by student, and counts their courses.
+-- A count of 1 means the student took only one course.
+SELECT s.student_name
+FROM students s
+JOIN (
+    SELECT student_id FROM linux_grades
+    UNION ALL
+    SELECT student_id FROM python_grades
+) AS all_courses ON s.student_id = all_courses.student_id
+GROUP BY s.student_id, s.student_name
+HAVING COUNT(s.student_id) = 1;
+
+-- Find students who took both courses.
+-- This query finds students who have an entry in both the linux_grades and python_grades tables.
+SELECT s.student_name
+FROM students s
+JOIN linux_grades lg ON s.student_id = lg.student_id
+JOIN python_grades pg ON s.student_id = pg.student_id;
+
